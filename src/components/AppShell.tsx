@@ -206,7 +206,7 @@ const TopBar: React.FC<{ onCommandOpen: () => void; activeStage: typeof stages[0
       background: 'rgba(250,248,245,0.92)', backdropFilter: 'blur(20px)',
       borderBottom: '1px solid var(--border)', zIndex: 111,
       display: 'flex', alignItems: 'center',
-      paddingLeft: 'var(--rail-w)', paddingRight: 20,
+      paddingLeft: 0, paddingRight: 0,
     }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingLeft: 16 }}>
         <Logo />
@@ -366,25 +366,23 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
       <TopBar onCommandOpen={() => setCmdOpen(true)} activeStage={activeStage} mobileMenuOpen={mobileMenuOpen} onMobileMenuToggle={() => setMobileMenuOpen(v => !v)} />
       <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} />
       <MobileMenu open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} activeStage={activeStage} />
-      <main style={{ marginLeft: 'var(--rail-w)', marginTop: 'var(--topbar-h)' }} className="main-content">
+      <main style={{ marginLeft: 0, marginTop: 'var(--topbar-h)' }} className="main-content">
         {children}
       </main>
 
       <style>{`
-        .rail-desktop { display: flex !important; }
-        .topbar-stage { display: flex !important; }
-        .topbar-cta   { display: inline-flex !important; }
+        .rail-desktop { display: none !important; }
+        .topbar-nav { display: flex !important; }
+        .topbar-cta { display: inline-flex !important; }
         .topbar-search-label { display: inline !important; }
-        .topbar-kbd   { display: inline !important; }
+        .topbar-kbd { display: inline !important; }
         .mobile-menu-btn { display: none !important; }
-        @media (max-width: 768px) {
-          .rail-desktop { display: none !important; }
-          .topbar-stage { display: none !important; }
+        @media (max-width: 1020px) {
+          .topbar-nav { display: none !important; }
           .topbar-search-label { display: none !important; }
           .topbar-kbd { display: none !important; }
           .topbar-cta { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
-          .main-content { margin-left: 0 !important; }
         }
         /* cmdk group heading styles */
         [cmdk-group-heading] {
