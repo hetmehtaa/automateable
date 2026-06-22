@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { PageLayout } from '../components/PageLayout';
+import { Footer } from '../sections/Footer';
 import { Reveal, Stagger, SI } from '../components/Reveal';
 
 type Status = 'live'|'beta'|'soon';
@@ -109,6 +110,7 @@ export const ToolsPage: React.FC = () => {
           </Reveal>
         </div>
       </section>
+          <Footer />
     </PageLayout>
   );
 };

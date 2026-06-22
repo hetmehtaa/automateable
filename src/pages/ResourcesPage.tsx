@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PageLayout } from '../components/PageLayout';
+import { Footer } from '../sections/Footer';
 import { Reveal, StaggerContainer, StaggerItem } from '../components/Reveal';
 import { Badge } from '../design-system';
 import { resources, resourceCategories } from '../data/resources';
@@ -115,6 +116,7 @@ export const ResourcesPage: React.FC = () => {
         @media (max-width: 768px) { .res-grid { grid-template-columns: 1fr !important; } }
         @media (max-width: 640px) { .featured-res-grid { grid-template-columns: 1fr !important; } }
       `}</style>
+          <Footer />
     </PageLayout>
   );
 };

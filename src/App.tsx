@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { lazy, Suspense } from 'react';
+import { AppShell } from './components/AppShell';
 import './styles/global.css';
 
 const HomePage      = lazy(() => import('./pages/HomePage'));
@@ -16,42 +17,53 @@ const BlogPostPage  = lazy(() => import('./pages/BlogPostPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
 
 const Loader = () => (
-  <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'var(--bg)' }}>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ animation:'spin 0.8s linear infinite' }}>
-      <style>{"@keyframes spin{to{transform:rotate(360deg)}}"}</style>
-      <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.08)" strokeWidth="2"/>
-      <path d="M12 2a10 10 0 0 1 10 10" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round"/>
+  <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ animation: 'spin 0.8s linear infinite' }}>
+      <style>{'@keyframes spin{to{transform:rotate(360deg)}}'}</style>
+      <circle cx="10" cy="10" r="8" stroke="var(--border-2)" strokeWidth="2"/>
+      <path d="M10 2a8 8 0 0 1 8 8" stroke="var(--blue)" strokeWidth="2" strokeLinecap="round"/>
     </svg>
   </div>
 );
 
 const NotFound = () => (
-  <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'16px', background:'var(--bg)', textAlign:'center', padding:'32px' }}>
-    <div style={{ fontSize:'72px', fontWeight:900, color:'rgba(255,255,255,0.06)', letterSpacing:'-0.06em', lineHeight:1 }}>404</div>
-    <div style={{ fontSize:'20px', fontWeight:700, color:'var(--t-hi)', marginTop:'-16px' }}>Page not found</div>
-    <div style={{ fontSize:'14px', color:'var(--t-lo)', marginBottom:'8px' }}>This page does not exist. But your automation problem does.</div>
-    <a href="/" style={{ display:'inline-flex', alignItems:'center', gap:'8px', height:'40px', padding:'0 20px', background:'var(--t-hi)', color:'#0a0a0b', borderRadius:'8px', fontSize:'14px', fontWeight:700, textDecoration:'none' }}>Back to home</a>
+  <div style={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, textAlign: 'center', padding: 32 }}>
+    <div style={{ fontFamily: 'var(--mono)', fontSize: 'var(--f11)', color: 'var(--ink-4)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>Error 404</div>
+    <h1 style={{ fontSize: 'clamp(var(--f32), 5vw, var(--f56))', fontWeight: 900, letterSpacing: '-0.05em', color: 'var(--ink-0)' }}>Page not found</h1>
+    <p style={{ color: 'var(--ink-3)', fontSize: 'var(--f15)', marginBottom: 8 }}>This page does not exist. But your automation problem does.</p>
+    <a href="/" className="btn btn--lg btn--primary">Back to home</a>
   </div>
+);
+
+const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 8 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -4 }}
+    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+  >
+    {children}
+  </motion.div>
 );
 
 const AnimatedRoutes = () => {
   const loc = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Routes location={loc} key={loc.pathname}>
-          <Route path="/"            element={<HomePage/>}/>
-          <Route path="/services"    element={<ServicesPage/>}/>
-          <Route path="/tools"       element={<ToolsPage/>}/>
-          <Route path="/audit"       element={<AuditPage/>}/>
-          <Route path="/use-cases"   element={<UseCasesPage/>}/>
-          <Route path="/pricing"     element={<PricingPage/>}/>
-          <Route path="/about"       element={<AboutPage/>}/>
-          <Route path="/contact"     element={<ContactPage/>}/>
-          <Route path="/blog"        element={<BlogPage/>}/>
-          <Route path="/blog/:slug"  element={<BlogPostPage/>}/>
-          <Route path="/resources"   element={<ResourcesPage/>}/>
-          <Route path="*"            element={<NotFound/>}/>
+          <Route path="/"            element={<PageWrapper><HomePage /></PageWrapper>} />
+          <Route path="/services"    element={<PageWrapper><ServicesPage /></PageWrapper>} />
+          <Route path="/tools"       element={<PageWrapper><ToolsPage /></PageWrapper>} />
+          <Route path="/audit"       element={<PageWrapper><AuditPage /></PageWrapper>} />
+          <Route path="/use-cases"   element={<PageWrapper><UseCasesPage /></PageWrapper>} />
+          <Route path="/pricing"     element={<PageWrapper><PricingPage /></PageWrapper>} />
+          <Route path="/about"       element={<PageWrapper><AboutPage /></PageWrapper>} />
+          <Route path="/contact"     element={<PageWrapper><ContactPage /></PageWrapper>} />
+          <Route path="/blog"        element={<PageWrapper><BlogPage /></PageWrapper>} />
+          <Route path="/blog/:slug"  element={<PageWrapper><BlogPostPage /></PageWrapper>} />
+          <Route path="/resources"   element={<PageWrapper><ResourcesPage /></PageWrapper>} />
+          <Route path="*"            element={<PageWrapper><NotFound /></PageWrapper>} />
         </Routes>
       </Suspense>
     </AnimatePresence>
@@ -61,7 +73,9 @@ const AnimatedRoutes = () => {
 function App() {
   return (
     <BrowserRouter>
-      <AnimatedRoutes/>
+      <AppShell>
+        <AnimatedRoutes />
+      </AppShell>
     </BrowserRouter>
   );
 }

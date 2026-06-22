@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageLayout } from '../components/PageLayout';
+import { Footer } from '../sections/Footer';
 import { Reveal, Stagger, SI } from '../components/Reveal';
 
 const plans = [
@@ -139,7 +140,8 @@ export const PricingPage: React.FC = () => (
         <div style={{ borderTop: '1px solid var(--b1)' }}/>
       </div>
     </section>
-  </PageLayout>
+        <Footer />
+    </PageLayout>
 );
 
 export default PricingPage;

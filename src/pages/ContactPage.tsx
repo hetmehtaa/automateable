@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PageLayout } from '../components/PageLayout';
+import { Footer } from '../sections/Footer';
 import { Reveal } from '../components/Reveal';
 
 interface F { name:string; email:string; what:string; category:string; tools:string; pain:string; budget:string; timeline:string; }
@@ -85,6 +86,7 @@ export const ContactPage: React.FC = () => {
           <button onClick={()=>{setF(empty);setStatus('idle');setTouched({});setErrs({});}} className="btn btn--md btn--ghost">Submit another</button>
         </motion.div>
       </div>
+          <Footer />
     </PageLayout>
   );
 
@@ -171,6 +173,7 @@ export const ContactPage: React.FC = () => {
           <style>{`.contact-g{grid-template-columns:1fr 1.6fr}@media(max-width:760px){.contact-g{grid-template-columns:1fr!important}}`}</style>
         </div>
       </section>
+          <Footer />
     </PageLayout>
   );
 };

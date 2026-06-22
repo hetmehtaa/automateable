@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageLayout } from '../components/PageLayout';
+import { Footer } from '../sections/Footer';
 import { Reveal } from '../components/Reveal';
 
 const cases = [
@@ -124,6 +125,7 @@ export const UseCasesPage: React.FC = () => {
           </div>
         </div>
       </section>
+          <Footer />
     </PageLayout>
   );
 };

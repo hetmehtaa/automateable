@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageLayout } from '../components/PageLayout';
+import { Footer } from '../sections/Footer';
 import { Reveal, Stagger, SI } from '../components/Reveal';
 
 const steps = [
@@ -194,7 +195,8 @@ export const AuditPage: React.FC = () => (
         </Reveal>
       </div>
     </section>
-  </PageLayout>
+        <Footer />
+    </PageLayout>
 );
 
 export default AuditPage;
