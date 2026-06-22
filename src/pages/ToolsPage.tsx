@@ -34,14 +34,14 @@ export const ToolsPage: React.FC = () => {
 
   return (
     <PageLayout title="AI Tools">
-      <section style={{ padding:'clamp(48px,8vw,96px) 0 clamp(32px,4vw,56px)', borderBottom:'1px solid var(--line)' }}>
+      <section style={{ padding:'clamp(48px,8vw,96px) 0 clamp(32px,4vw,56px)', borderBottom:'1px solid var(--border)' }}>
         <div className="wrap">
           <Reveal>
-            <div className="label" style={{ marginBottom:'var(--s4)' }}>AI Tools</div>
-            <h1 style={{ fontSize:'clamp(var(--t32),5vw,var(--t64))', fontWeight:900, letterSpacing:'-0.05em', lineHeight:1.05, color:'var(--t-hi)', marginBottom:'var(--s5)' }}>
+            <div className="label" style={{ marginBottom:'var(--sp-4)' }}>AI Tools</div>
+            <h1 style={{ fontSize:'clamp(var(--f32),5vw,var(--t64))', fontWeight:900, letterSpacing:'-0.05em', lineHeight:1.05, color:'var(--ink-0)', marginBottom:'var(--sp-5)' }}>
               Productized tools<br/>for specific workflows.
             </h1>
-            <p style={{ fontSize:'var(--t16)', color:'var(--t-md)', maxWidth:'480px', lineHeight:1.65 }}>
+            <p style={{ fontSize:'var(--f16)', color:'var(--ink-2)', maxWidth:'480px', lineHeight:1.65 }}>
               Use them directly or as part of a custom engagement. Each tool is built for one job and does it well.
             </p>
           </Reveal>
@@ -53,45 +53,45 @@ export const ToolsPage: React.FC = () => {
           {/* Filter */}
           <div style={{ display:'flex', gap:'6px', flexWrap:'wrap', marginBottom:'var(--s10)' }}>
             {tags.map(t=>(
-              <button key={t} onClick={()=>setTag(t)}
-                style={{ height:'30px', padding:'0 12px', background:tag===t?'var(--t-hi)':'var(--bg-2)', color:tag===t?'#0a0a0b':'var(--t-md)', border:`1px solid ${tag===t?'var(--t-hi)':'var(--line)'}`, borderRadius:'var(--rfull)', fontSize:'var(--t12)', fontWeight:600, cursor:'pointer', transition:'all 0.15s' }}>
+              <button key={t} onClick={()=>setTag(t)} aria-label={`Filter by ${t}`} aria-pressed={tag===t}
+                style={{ height:'30px', padding:'0 12px', background:tag===t?'var(--ink-0)':'var(--paper-1)', color:tag===t?'var(--ink-0)':'var(--ink-2)', border:`1px solid ${tag===t?'var(--ink-0)':'var(--border)'}`, borderRadius:'var(--rfull)', fontSize:'var(--t12)', fontWeight:600, cursor:'pointer', transition:'all 0.15s' }}>
                 {t}
               </button>
             ))}
           </div>
 
-          <Stagger style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:'var(--s3)' }} className="tools-g">
+          <Stagger style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:'var(--sp-3)' }} className="tools-g">
             {filtered.map(tool=>{
               const sm = statusMeta[tool.status];
               const isActive = active === tool.name;
               return (
                 <SI key={tool.name}>
                   <motion.div whileHover={{ borderColor:'var(--line-3)' }}
-                    style={{ background:'var(--bg-1)', border:`1px solid ${isActive?'var(--line-2)':'var(--line)'}`, borderRadius:'var(--r12)', overflow:'hidden', cursor:'pointer', transition:'border-color 0.2s', opacity:tool.status==='soon'?0.65:1 }}
+                    style={{ background:'var(--bg-1)', border:`1px solid ${isActive?'var(--border-2)':'var(--border)'}`, borderRadius:'var(--r-12)', overflow:'hidden', cursor:'pointer', transition:'border-color 0.2s', opacity:tool.status==='soon'?0.65:1 }}
                     onClick={()=>setActive(isActive?null:tool.name)}>
-                    <div style={{ padding:'var(--s5) var(--s6)', display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'var(--s4)' }}>
+                    <div style={{ padding:'var(--sp-5) var(--sp-6)', display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:'var(--sp-4)' }}>
                       <div style={{ flex:1 }}>
                         <div style={{ display:'flex', alignItems:'center', gap:'var(--s2)', marginBottom:'var(--s2)' }}>
                           <span className={`chip ${sm.cls}`} style={{ fontSize:'var(--t10)' }}>{sm.label}</span>
-                          <span style={{ fontSize:'var(--t11)', color:'var(--t-xlo)', fontWeight:600, letterSpacing:'0.06em', textTransform:'uppercase' }}>{tool.tag}</span>
+                          <span style={{ fontSize:'var(--t11)', color:'var(--ink-4)', fontWeight:600, letterSpacing:'0.06em', textTransform:'uppercase' }}>{tool.tag}</span>
                         </div>
-                        <div style={{ fontSize:'var(--t16)', fontWeight:700, color:'var(--t-hi)', letterSpacing:'-0.02em', marginBottom:'3px' }}>{tool.name}</div>
-                        <div style={{ fontSize:'var(--t13)', color:'var(--t-lo)' }}>{tool.desc}</div>
+                        <div style={{ fontSize:'var(--f16)', fontWeight:700, color:'var(--ink-0)', letterSpacing:'-0.02em', marginBottom:'3px' }}>{tool.name}</div>
+                        <div style={{ fontSize:'var(--f13)', color:'var(--ink-3)' }}>{tool.desc}</div>
                       </div>
                       <motion.div animate={{ rotate: isActive ? 180 : 0 }} transition={{ duration:0.2 }}
-                        style={{ color:'var(--t-xlo)', flexShrink:0, marginTop:'2px' }}>
+                        style={{ color:'var(--ink-4)', flexShrink:0, marginTop:'2px' }}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                       </motion.div>
                     </div>
                     <AnimatePresence initial={false}>
                       {isActive && (
                         <motion.div initial={{height:0,opacity:0}} animate={{height:'auto',opacity:1}} exit={{height:0,opacity:0}} transition={{duration:0.25,ease:[0.22,1,0.36,1]}} style={{overflow:'hidden'}}>
-                          <div style={{ padding:'var(--s4) var(--s6) var(--s5)', borderTop:'1px solid var(--line)', background:'var(--bg-2)' }}>
-                            <p style={{ fontSize:'var(--t13)', color:'var(--t-md)', lineHeight:1.6, marginBottom:'var(--s4)' }}>{tool.detail}</p>
+                          <div style={{ padding:'var(--sp-4) var(--sp-6) var(--sp-5)', borderTop:'1px solid var(--border)', background:'var(--paper-1)' }}>
+                            <p style={{ fontSize:'var(--f13)', color:'var(--ink-2)', lineHeight:1.6, marginBottom:'var(--sp-4)' }}>{tool.detail}</p>
                             {tool.status !== 'soon' ? (
                               <Link to="/contact" className="btn btn--sm btn--blue">Try this tool</Link>
                             ) : (
-                              <span style={{ fontSize:'var(--t12)', color:'var(--t-lo)', fontStyle:'italic' }}>Notify me when available</span>
+                              <span style={{ fontSize:'var(--t12)', color:'var(--ink-3)', fontStyle:'italic' }}>Notify me when available</span>
                             )}
                           </div>
                         </motion.div>
@@ -105,7 +105,7 @@ export const ToolsPage: React.FC = () => {
           <style>{`.tools-g{grid-template-columns:repeat(2,1fr)}@media(max-width:640px){.tools-g{grid-template-columns:1fr!important}}`}</style>
 
           <Reveal style={{ marginTop:'var(--s16)', textAlign:'center' }}>
-            <p style={{ fontSize:'var(--t14)', color:'var(--t-lo)', marginBottom:'var(--s5)' }}>Need a tool that does not exist yet?</p>
+            <p style={{ fontSize:'var(--f14)', color:'var(--ink-3)', marginBottom:'var(--sp-5)' }}>Need a tool that does not exist yet?</p>
             <Link to="/contact" className="btn btn--lg btn--ghost">Submit your problem</Link>
           </Reveal>
         </div>

@@ -55,7 +55,7 @@ export const BlogPage: React.FC = () => {
         <div className="container" style={{ maxWidth: 'var(--container-xl)' }}>
           <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap', marginBottom: 'var(--space-10)' }}>
             {blogCategories.map(cat => (
-              <button key={cat} onClick={() => setActiveCategory(cat)}
+              <button key={cat} onClick={() => setActiveCategory(cat)} aria-label={`Filter by ${cat}`} aria-pressed={activeCategory===cat}
                 style={{ height: '34px', padding: '0 16px', background: activeCategory === cat ? 'var(--color-ink-900)' : 'var(--bg-elevated)', color: activeCategory === cat ? 'white' : 'var(--text-secondary)', border: `1px solid ${activeCategory === cat ? 'var(--color-ink-900)' : 'var(--border-color)'}`, borderRadius: 'var(--radius-full)', fontSize: 'var(--text-xs)', fontWeight: 600, cursor: 'pointer', transition: 'all var(--transition-fast)' }}>
                 {cat}
               </button>

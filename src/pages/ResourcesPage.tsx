@@ -40,7 +40,7 @@ export const ResourcesPage: React.FC = () => {
   return (
     <PageLayout title="Resources">
       {/* Hero */}
-      <section style={{ padding: 'var(--space-20) 0 var(--space-12)', background: 'var(--bg-surface)', borderBottom: '1px solid var(--border-color)' }}>
+      <section style={{ padding: 'var(--space-20) 0 var(--space-12)', background: 'var(--paper-1)', borderBottom: '1px solid var(--border)' }}>
         <div className="container" style={{ maxWidth: 'var(--container-xl)' }}>
           <Reveal>
             <div style={{ maxWidth: '640px' }}>
@@ -59,9 +59,9 @@ export const ResourcesPage: React.FC = () => {
       </section>
 
       {/* Featured */}
-      <section style={{ padding: 'var(--space-16) 0', borderBottom: '1px solid var(--border-color)' }}>
+      <section style={{ padding: 'var(--space-16) 0', borderBottom: '1px solid var(--border)' }}>
         <div className="container" style={{ maxWidth: 'var(--container-xl)' }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 'var(--space-6)' }}>Featured resources</div>
+          <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-4)', marginBottom: 'var(--space-6)' }}>Featured resources</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'var(--space-5)' }} className="featured-res-grid">
             {featured.map((res, i) => (
               <Reveal key={res.slug} delay={i * 0.1}>
@@ -77,22 +77,22 @@ export const ResourcesPage: React.FC = () => {
         <div className="container" style={{ maxWidth: 'var(--container-xl)' }}>
           <div style={{ display: 'flex', gap: 'var(--space-8)', marginBottom: 'var(--space-8)', flexWrap: 'wrap', alignItems: 'flex-start' }}>
             <div>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 'var(--space-2)' }}>Category</div>
+              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--ink-4)', marginBottom: 'var(--space-2)' }}>Category</div>
               <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
                 {resourceCategories.map(cat => (
-                  <button key={cat} onClick={() => setActiveCategory(cat)}
-                    style={{ height: '32px', padding: '0 14px', background: activeCategory === cat ? 'var(--color-ink-900)' : 'var(--bg-elevated)', color: activeCategory === cat ? 'white' : 'var(--text-secondary)', border: `1px solid ${activeCategory === cat ? 'var(--color-ink-900)' : 'var(--border-color)'}`, borderRadius: 'var(--radius-full)', fontSize: 'var(--text-xs)', fontWeight: 600, cursor: 'pointer', transition: 'all var(--transition-fast)' }}>
+                  <button key={cat} onClick={() => setActiveCategory(cat)} aria-label={`Filter by ${cat}`} aria-pressed={activeCategory===cat}
+                    style={{ height: '32px', padding: '0 14px', background: activeCategory === cat ? 'var(--color-ink-900)' : 'var(--bg-elevated)', color: activeCategory === cat ? 'white' : 'var(--text-secondary)', border: `1px solid ${activeCategory === cat ? 'var(--color-ink-900)' : 'var(--border)'}`, borderRadius: 'var(--r-full)', fontSize: 'var(--text-xs)', fontWeight: 600, cursor: 'pointer', transition: 'all var(--transition-fast)' }}>
                     {cat}
                   </button>
                 ))}
               </div>
             </div>
             <div>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 'var(--space-2)' }}>Type</div>
+              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--ink-4)', marginBottom: 'var(--space-2)' }}>Type</div>
               <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
                 {['All', 'template', 'guide', 'checklist', 'calculator', 'framework'].map(t => (
-                  <button key={t} onClick={() => setActiveType(t)}
-                    style={{ height: '32px', padding: '0 14px', background: activeType === t ? 'var(--color-ink-900)' : 'var(--bg-elevated)', color: activeType === t ? 'white' : 'var(--text-secondary)', border: `1px solid ${activeType === t ? 'var(--color-ink-900)' : 'var(--border-color)'}`, borderRadius: 'var(--radius-full)', fontSize: 'var(--text-xs)', fontWeight: 600, cursor: 'pointer', transition: 'all var(--transition-fast)', textTransform: 'capitalize' }}>
+                  <button key={t} onClick={() => setActiveType(t)} aria-label={`Filter by type ${t}`} aria-pressed={activeType===t}
+                    style={{ height: '32px', padding: '0 14px', background: activeType === t ? 'var(--color-ink-900)' : 'var(--bg-elevated)', color: activeType === t ? 'white' : 'var(--text-secondary)', border: `1px solid ${activeType === t ? 'var(--color-ink-900)' : 'var(--border)'}`, borderRadius: 'var(--r-full)', fontSize: 'var(--text-xs)', fontWeight: 600, cursor: 'pointer', transition: 'all var(--transition-fast)', textTransform: 'capitalize' }}>
                     {t}
                   </button>
                 ))}
@@ -101,7 +101,7 @@ export const ResourcesPage: React.FC = () => {
           </div>
 
           <StaggerContainer style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 'var(--space-4)' }} className="res-grid">
-            {filtered.map(res => (
+            {filtered.map((res) => (
               <StaggerItem key={res.slug}>
                 <ResourceCard res={res} email={email} setEmail={setEmail} submitted={submitted} setSubmitted={setSubmitted} />
               </StaggerItem>
@@ -144,19 +144,19 @@ const FeaturedResourceCard: React.FC<CardProps> = ({ res }) => {
   return (
     <motion.div whileHover={{ y: -3 }}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ background: 'var(--bg-elevated)', border: `1px solid ${hov ? 'var(--color-blue-200)' : 'var(--border-color)'}`, borderRadius: 'var(--radius-2xl)', padding: 'var(--space-7)', boxShadow: hov ? 'var(--shadow-lg)' : 'var(--shadow-sm)', transition: 'all var(--transition-base)', display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+      style={{ background: 'var(--bg-elevated)', border: `1px solid ${hov ? 'var(--color-blue-200)' : 'var(--border)'}`, borderRadius: 'var(--radius-2xl)', padding: 'var(--space-7)', boxShadow: hov ? 'var(--shadow-lg)' : 'var(--shadow-sm)', transition: 'all var(--transition-base)', display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
         <div style={{ width: '44px', height: '44px', borderRadius: 'var(--radius-lg)', background: c.bg, border: `1px solid ${c.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: c.text, flexShrink: 0 }}>
           <Icon size={20} />
         </div>
-        <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'capitalize', background: c.bg, color: c.text, border: `1px solid ${c.border}`, borderRadius: 'var(--radius-full)', padding: '3px 9px' }}>{res.type}</span>
+        <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'capitalize', background: c.bg, color: c.text, border: `1px solid ${c.border}`, borderRadius: 'var(--r-full)', padding: '3px 9px' }}>{res.type}</span>
       </div>
       <div>
         <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em', marginBottom: '6px' }}>{res.title}</h3>
         <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 'var(--leading-relaxed)' }}>{res.desc}</p>
       </div>
       <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-        {res.tags.map(tag => <span key={tag} style={{ fontSize: '10px', fontWeight: 600, background: 'var(--bg-surface)', border: '1px solid var(--border-color)', color: 'var(--text-muted)', borderRadius: 'var(--radius-full)', padding: '2px 8px' }}>{tag}</span>)}
+        {res.tags.map(tag => <span key={tag} style={{ fontSize: '10px', fontWeight: 600, background: 'var(--paper-1)', border: '1px solid var(--border)', color: 'var(--ink-4)', borderRadius: 'var(--r-full)', padding: '2px 8px' }}>{tag}</span>)}
       </div>
       {done ? (
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 14px', background: 'var(--color-green-100)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-green-500)' }}>
@@ -165,7 +165,7 @@ const FeaturedResourceCard: React.FC<CardProps> = ({ res }) => {
       ) : (
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '8px' }}>
           <input type="email" placeholder="your@email.com" value={localEmail} onChange={e => setLocalEmail(e.target.value)} required
-            style={{ flex: 1, height: '38px', padding: '0 12px', background: 'var(--bg-surface)', border: '1px solid var(--border-med)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-sm)', color: 'var(--text-primary)', outline: 'none', transition: 'border-color var(--transition-fast)' }}
+            style={{ flex: 1, height: '38px', padding: '0 12px', background: 'var(--paper-1)', border: '1px solid var(--border-med)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-sm)', color: 'var(--text-primary)', outline: 'none', transition: 'border-color var(--transition-fast)' }}
             onFocus={e => (e.target.style.borderColor = 'var(--border-focus)')}
             onBlur={e => (e.target.style.borderColor = 'var(--border-med)')} />
           <button type="submit" style={{ height: '38px', padding: '0 14px', background: 'var(--color-ink-900)', color: 'white', border: 'none', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-xs)', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', whiteSpace: 'nowrap', transition: 'background var(--transition-fast)' }}
@@ -189,14 +189,14 @@ const ResourceCard: React.FC<CardProps> = ({ res }) => {
   return (
     <motion.div whileHover={{ y: -2 }}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ background: 'var(--bg-elevated)', border: `1px solid ${hov ? 'var(--color-blue-200)' : 'var(--border-color)'}`, borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)', boxShadow: hov ? 'var(--shadow-md)' : 'var(--shadow-xs)', transition: 'all var(--transition-base)', display: 'flex', gap: 'var(--space-5)', alignItems: 'flex-start' }}>
+      style={{ background: 'var(--bg-elevated)', border: `1px solid ${hov ? 'var(--color-blue-200)' : 'var(--border)'}`, borderRadius: 'var(--radius-xl)', padding: 'var(--space-6)', boxShadow: hov ? 'var(--shadow-md)' : 'var(--shadow-xs)', transition: 'all var(--transition-base)', display: 'flex', gap: 'var(--space-5)', alignItems: 'flex-start' }}>
       <div style={{ width: '40px', height: '40px', borderRadius: 'var(--radius-lg)', background: c.bg, border: `1px solid ${c.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: c.text, flexShrink: 0 }}>
         <Icon size={18} />
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--space-3)', marginBottom: '6px', flexWrap: 'wrap' }}>
           <h3 style={{ fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>{res.title}</h3>
-          <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'capitalize', background: c.bg, color: c.text, border: `1px solid ${c.border}`, borderRadius: 'var(--radius-full)', padding: '2px 8px', flexShrink: 0 }}>{res.type}</span>
+          <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'capitalize', background: c.bg, color: c.text, border: `1px solid ${c.border}`, borderRadius: 'var(--r-full)', padding: '2px 8px', flexShrink: 0 }}>{res.type}</span>
         </div>
         <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 'var(--leading-relaxed)', marginBottom: 'var(--space-4)' }}>{res.desc}</p>
         {done ? (
@@ -206,7 +206,7 @@ const ResourceCard: React.FC<CardProps> = ({ res }) => {
         ) : (
           <form onSubmit={e => { e.preventDefault(); if (localEmail.trim()) setDone(true); }} style={{ display: 'flex', gap: '8px' }}>
             <input type="email" placeholder="your@email.com" value={localEmail} onChange={e => setLocalEmail(e.target.value)} required
-              style={{ flex: 1, height: '34px', padding: '0 10px', background: 'var(--bg-surface)', border: '1px solid var(--border-med)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-xs)', color: 'var(--text-primary)', outline: 'none' }}
+              style={{ flex: 1, height: '34px', padding: '0 10px', background: 'var(--paper-1)', border: '1px solid var(--border-med)', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-xs)', color: 'var(--text-primary)', outline: 'none' }}
               onFocus={e => (e.target.style.borderColor = 'var(--border-focus)')}
               onBlur={e => (e.target.style.borderColor = 'var(--border-med)')} />
             <button type="submit" style={{ height: '34px', padding: '0 12px', background: 'var(--color-ink-900)', color: 'white', border: 'none', borderRadius: 'var(--radius-md)', fontSize: '11px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', whiteSpace: 'nowrap' }}

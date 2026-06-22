@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Footer } from '../sections/Footer';
 import { PageLayout } from '../components/PageLayout';
 import { Badge } from '../design-system';
 import { blogPosts } from '../data/blog';
@@ -101,6 +102,7 @@ export const BlogPostPage: React.FC = () => {
           </div>
         </section>
       )}
+          <Footer />
     </PageLayout>
   );
 };

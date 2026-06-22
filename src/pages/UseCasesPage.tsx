@@ -73,7 +73,7 @@ export const UseCasesPage: React.FC = () => {
           {/* Persona tabs */}
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 40 }}>
             {cases.map(x => (
-              <button key={x.id} onClick={() => setActive(x.id)}
+              <button key={x.id} onClick={() => setActive(x.id)} aria-label={`Show ${x.label} use case`} aria-pressed={active===x.id}
                 style={{ height: 32, padding: '0 16px', background: active === x.id ? 'var(--t0)' : 'var(--s2)', color: active === x.id ? 'var(--s0)' : 'var(--t1)', border: `1px solid ${active === x.id ? 'var(--t0)' : 'var(--b1)'}`, borderRadius: 'var(--rfull)', fontSize: 'var(--f13)', fontWeight: 600, cursor: 'pointer', transition: 'all 0.15s' }}>
                 {x.label}
               </button>
