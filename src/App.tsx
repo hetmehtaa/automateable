@@ -15,6 +15,8 @@ const ContactPage   = lazy(() => import('./pages/ContactPage'));
 const BlogPage      = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage  = lazy(() => import('./pages/BlogPostPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
+const PersonasPage = lazy(() => import('./pages/PersonasPage'));
+const AutomationResourcesPage = lazy(() => import('./pages/AutomationResourcesPage'));
 
 const Loader = () => (
   <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -63,6 +65,8 @@ const AnimatedRoutes = () => {
           <Route path="/blog"        element={<PageWrapper><BlogPage /></PageWrapper>} />
           <Route path="/blog/:slug"  element={<PageWrapper><BlogPostPage /></PageWrapper>} />
           <Route path="/resources"   element={<PageWrapper><ResourcesPage /></PageWrapper>} />
+          <Route path="/personas"   element={<PageWrapper><PersonasPage /></PageWrapper>} />
+          <Route path="/automation-resources" element={<PageWrapper><AutomationResourcesPage /></PageWrapper>} />
           <Route path="*"            element={<PageWrapper><NotFound /></PageWrapper>} />
         </Routes>
       </Suspense>

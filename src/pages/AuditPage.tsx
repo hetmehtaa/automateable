@@ -32,7 +32,7 @@ const faqs = [
 
 const TerminalPreview: React.FC = () => {
   const lines = [
-    { t: 0.0,  c: 'dim',  text: '$ automateable audit --client example.com' },
+    { t: 0.0,  c: 'dim',  text: '$ automateable audit --workflow "weekly reporting"' },
     { t: 0.3,  c: 'dim',  text: 'Initializing workflow analysis...' },
     { t: 0.6,  c: 'blue', text: '[1/5] Mapping workflow steps...' },
     { t: 1.0,  c: 'dim',  text: '      Found 12 steps, 4 decision points' },

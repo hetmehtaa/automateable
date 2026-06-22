@@ -208,15 +208,32 @@ const TopBar: React.FC<{ onCommandOpen: () => void; activeStage: typeof stages[0
       display: 'flex', alignItems: 'center',
       paddingLeft: 0, paddingRight: 0,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingLeft: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingInline: 'clamp(16px,3vw,40px)' }}>
         <Logo />
 
-        {/* Stage breadcrumb */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }} className="topbar-stage">
-          <span style={{ fontFamily: 'var(--mono)', fontSize: 'var(--f10)', color: 'var(--ink-4)', letterSpacing: '0.06em' }}>{activeStage.id}</span>
-          <span style={{ width: 16, height: 1, background: 'var(--border-2)' }} aria-hidden="true"/>
-          <span style={{ fontFamily: 'var(--mono)', fontSize: 'var(--f11)', color: activeStage.color, fontWeight: 600, letterSpacing: '0.08em' }}>{activeStage.label}</span>
-        </div>
+        {/* Desktop navigation */}
+        <ul className="topbar-nav" style={{ display: 'flex', alignItems: 'center', gap: 2, listStyle: 'none', margin: 0, padding: 0, flex: 1, justifyContent: 'center' }}>
+          {[
+            { label: 'Services',  to: '/services'  },
+            { label: 'AI Tools',  to: '/tools'     },
+            { label: 'Audit',     to: '/audit'     },
+            { label: 'Use Cases', to: '/use-cases' },
+            { label: 'Personas',  to: '/personas'  },
+            { label: 'Resources', to: '/automation-resources' },
+            { label: 'Pricing',   to: '/pricing'   },
+            { label: 'Blog',      to: '/blog'      },
+            { label: 'About',     to: '/about'     },
+          ].map(l => (
+            <li key={l.to}>
+              <Link to={l.to}
+                style={{ fontSize: 'var(--f13)', fontWeight: 400, color: 'var(--ink-2)', padding: '5px 10px', borderRadius: 'var(--r-6)', display: 'block', transition: 'color 0.15s, background 0.15s', textDecoration: 'none' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--ink-0)'; (e.currentTarget as HTMLElement).style.background = 'var(--paper-2)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--ink-2)'; (e.currentTarget as HTMLElement).style.background = 'transparent'; }}>
+                {l.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           {/* Command trigger */}

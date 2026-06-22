@@ -135,9 +135,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <PageLayout title="The Automation Foundry">
-      {/* ======================================================
-          HERO: PROBLEM INTAKE CONSOLE
-          ====================================================== */}
+      {/* Hero section */}
       <section
         ref={heroRef}
         style={{
@@ -165,9 +163,8 @@ export const HomePage: React.FC = () => {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 10px', background: 'white', border: '1px solid var(--border-2)', borderRadius: 'var(--r-full)' }}>
               <span className="dot dot--live" style={{ width: 5, height: 5 }} />
-              <span style={{ fontFamily: 'var(--mono)', fontSize: 'var(--f10)', color: 'var(--ink-3)', letterSpacing: '0.08em' }}>INTAKE CONSOLE</span>
+              <span style={{ fontFamily: 'var(--mono)', fontSize: 'var(--f10)', color: 'var(--ink-3)', letterSpacing: '0.08em' }}>Workflow Intake</span>
             </div>
-            <span style={{ fontFamily: 'var(--mono)', fontSize: 'var(--f10)', color: 'var(--ink-4)' }}>automateable.foundry / v4.0</span>
           </motion.div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(32px,5vw,80px)', alignItems: 'start', paddingBottom: 'clamp(40px,6vh,80px)' }} className="hero-grid">
