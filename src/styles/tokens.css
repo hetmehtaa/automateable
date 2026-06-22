@@ -1,0 +1,102 @@
+/* ============================================================
+   AUTOMATEABLE v3 â Linear/Vercel inspired design tokens
+   ============================================================ */
+:root {
+  /* Core â near-black like Linear */
+  --bg:           #0a0a0b;
+  --bg-1:         #111113;
+  --bg-2:         #18181b;
+  --bg-3:         #1f1f23;
+  --bg-4:         #27272c;
+
+  /* Borders */
+  --line:         rgba(255,255,255,0.07);
+  --line-2:       rgba(255,255,255,0.11);
+  --line-3:       rgba(255,255,255,0.16);
+
+  /* Text */
+  --t-hi:         #f1f1f3;
+  --t-md:         #a0a0ab;
+  --t-lo:         #5c5c69;
+  --t-xlo:        #3a3a44;
+
+  /* Brand */
+  --blue:         #3b82f6;
+  --blue-hi:      #60a5fa;
+  --blue-lo:      rgba(59,130,246,0.15);
+  --blue-line:    rgba(59,130,246,0.25);
+  --cyan:         #06b6d4;
+  --cyan-lo:      rgba(6,182,212,0.12);
+  --purple:       #8b5cf6;
+  --purple-lo:    rgba(139,92,246,0.12);
+  --green:        #22c55e;
+  --green-lo:     rgba(34,197,94,0.12);
+  --amber:        #f59e0b;
+  --red:          #ef4444;
+
+  /* Gradients */
+  --grad-brand:   linear-gradient(135deg,#3b82f6,#06b6d4);
+  --grad-mesh:    linear-gradient(135deg,#6366f1 0%,#8b5cf6 40%,#06b6d4 100%);
+  --grad-text:    linear-gradient(90deg,#f1f1f3 0%,#a0a0ab 100%);
+
+  /* Typography */
+  --font:         'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:         'JetBrains Mono','Fira Code',monospace;
+
+  /* Fluid sizes */
+  --t10: 0.625rem;
+  --t11: 0.6875rem;
+  --t12: 0.75rem;
+  --t13: 0.8125rem;
+  --t14: 0.875rem;
+  --t15: 0.9375rem;
+  --t16: 1rem;
+  --t18: 1.125rem;
+  --t20: 1.25rem;
+  --t24: 1.5rem;
+  --t28: 1.75rem;
+  --t32: 2rem;
+  --t40: 2.5rem;
+  --t48: 3rem;
+  --t56: 3.5rem;
+  --t64: 4rem;
+  --t80: 5rem;
+
+  /* Radius */
+  --r4:   4px;
+  --r6:   6px;
+  --r8:   8px;
+  --r10:  10px;
+  --r12:  12px;
+  --r16:  16px;
+  --r20:  20px;
+  --r24:  24px;
+  --rfull:9999px;
+
+  /* Spacing */
+  --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem;
+  --s5: 1.25rem; --s6: 1.5rem; --s8: 2rem;   --s10: 2.5rem;
+  --s12: 3rem;   --s16: 4rem;  --s20: 5rem;  --s24: 6rem;
+  --s32: 8rem;
+
+  /* Shadows */
+  --sh-sm:  0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --sh-md:  0 4px 12px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.3);
+  --sh-lg:  0 8px 32px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.3);
+  --sh-xl:  0 16px 48px rgba(0,0,0,0.7);
+  --sh-glow:0 0 40px rgba(59,130,246,0.15);
+
+  /* Motion */
+  --ease-out:  cubic-bezier(0.22,1,0.36,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 380ms;
+
+  /* Layout */
+  --nav-h:  60px;
+  --max-w:  1200px;
+  --max-lg: 960px;
+  --max-md: 720px;
+  --max-sm: 560px;
+}
